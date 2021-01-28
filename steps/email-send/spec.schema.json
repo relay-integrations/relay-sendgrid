@@ -1,0 +1,67 @@
+
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "connection": {
+      "type": "object",
+      "x-relay-connectionType": "sendgrid",
+      "description": "A SendGrid connection to use",
+      "properties": {
+        "apiKey": {
+          "type": "string",
+          "description": "API Key"
+        }
+      },
+      "required": [
+        "apiKey"
+      ]
+    },
+    "from": {
+      "type": "string",
+      "description": "The email address you would like the email to come from."
+    },
+    "to": {
+      "type": "string",
+      "description": "The email address(es) you would like the email to be sent to."
+    },
+    "cc": {
+      "type": "string",
+      "description": "The email address(es) you would like the email to be cc'd to."
+    },
+    "bcc": {
+      "type": "string",
+      "description": "The email address(es) you would like the email to be bcc'd to."
+    },
+    "subject": {
+      "type": "string",
+      "description": "The subject line you would like to include in the email."
+    },
+    "body": {
+      "type": "object",
+      "description": "A map with the configration for the body of the email.",
+      "properties": {
+        "html": {
+          "type": "string",
+          "description": "The HTML you would like to send in the body of the email"
+        },
+        "text": {
+          "type": "string",
+          "description": "Text for a plain text version of the email"
+        }
+      }
+    },
+    "timeoutSeconds": {
+      "type": "integer",
+      "desciption": "The maximum amount of time the process is allowed to take."
+    }
+  },
+  "required": [
+    "connection",
+    "from",
+    "to",
+    "subject",
+    "body"
+  ],
+  "additionalProperties": false
+}
