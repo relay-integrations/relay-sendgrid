@@ -50,10 +50,6 @@
           "description": "Text for a plain text version of the email"
         }
       }
-    },
-    "timeoutSeconds": {
-      "type": "integer",
-      "desciption": "The maximum amount of time the process is allowed to take."
     }
   },
   "required": [

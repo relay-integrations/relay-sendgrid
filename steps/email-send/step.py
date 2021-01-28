@@ -57,10 +57,6 @@ try:
     response = sg.send(message)
 
     print(f'Your email titled "{subject}" was sent successfully to: {toAddress}' )
-
-    relay.outputs.set('statusCode', response.status_code)
-    relay.outputs.set('body', response.body)
-    relay.outputs.set('headers', response.headers)
 except Exception as e:
     print(str(e))
     exit(1)

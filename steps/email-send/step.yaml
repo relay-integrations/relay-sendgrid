@@ -43,9 +43,6 @@ schemas:
   spec: 
     source: file
     file: spec.schema.json
-  output:
-    source: file
-    file: output.schema.json 
 
 examples:
 - summary: Send an email through SendGrid
