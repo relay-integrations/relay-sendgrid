@@ -68,9 +68,9 @@ if bcc_addresses is not None:
 try:
     sg = SendGridAPIClient(api_key)
     response = sg.send(message)
-    to_addressString = ', '.join(to_address)
+    to_address_string = ', '.join(to_address)
 
-    print(f'Your email titled "{subject}" was sent successfully to: {to_addressString}' )
+    print(f'Your email titled "{subject}" was sent successfully to: {to_address_string}' )
 except Exception as e:
     print(str(e))
     exit(1)
