@@ -22,14 +22,25 @@
       "description": "The email address you would like the email to come from."
     },
     "to": {
-      "type": "string",
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type" : "string" } }
+      ],
       "description": "The email address(es) you would like the email to be sent to."
     },
     "cc": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type" : "string" } }
+      ],
       "type": "string",
       "description": "The email address(es) you would like the email to be cc'd to."
     },
     "bcc": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type" : "string" } }
+      ],
       "type": "string",
       "description": "The email address(es) you would like the email to be bcc'd to."
     },
