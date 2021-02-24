@@ -8,20 +8,20 @@ relay = Interface()
 api_key = relay.get(D.sendgrid.connection.apiKey)
 
 fromAddress = relay.get("from")
-toAddress = relay.get(D.to)
+toAddress = relay.get(D.to).split(",")
 subject = relay.get(D.subject)
 
-ccAddress = None
+ccAddresses = None
 
 try:
-  ccAddress = relay.get(D.cc)
+  ccAddresses = relay.get(D.cc).split(",")
 except:
   pass
 
-bccAddress = None
+bccAddresses = None
 
 try:
-  bccAddress = relay.get(D.bcc)
+  bccAddresses = relay.get(D.bcc).split(",")
 except:
   pass
 
@@ -46,17 +46,28 @@ message = Mail(
     plain_text_content=text,
     html_content=html)
 
-if ccAddress is not None:
-  message.cc = Cc(ccAddress)
+if ccAddresses is not None:
+  ccs = []
 
-if bccAddress is not None:
-  message.bcc = Bcc(bccAddress)
+  for ccAddress in ccAddresses:
+    ccs.append(Cc(ccAddress))
+    
+  message.cc = ccs
+
+if bccAddresses is not None:
+  bccs = []
+
+  for bccAddress in bccAddresses:
+    bccs.append(Bcc(bccAddress))
+
+  message.bcc = bccs
 
 try:
     sg = SendGridAPIClient(api_key)
     response = sg.send(message)
+    toAddressString = ', '.join(toAddress)
 
-    print(f'Your email titled "{subject}" was sent successfully to: {toAddress}' )
+    print(f'Your email titled "{subject}" was sent successfully to: {toAddressString}' )
 except Exception as e:
     print(str(e))
     exit(1)
